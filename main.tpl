@@ -59,7 +59,10 @@
 {{include file="component_menu_basket_73046.tpl"}}
 {{include file="component_menu_search_70922.tpl"}}
 {{include file="component_menu_categories_73639.tpl"}}
-            </header>
+
+
+
+</header>
 <div id="layout" class="row clearfix">
 <aside{{assign "classAttributeTmp1" ""}}{{capture name="classAttributeTmp1" assign="classAttributeTmp1"}}span3{{/capture}}{{if $xml->getItem("page/@type") == (string) 'projector'}}{{capture name="classAttributeTmp1" assign="classAttributeTmp1"}}{{$txt['70925::53698_projector1']}}{{/capture}}{{elseif $xml->getItem("page/@type") == (string) 'search'}}{{capture name="classAttributeTmp1" assign="classAttributeTmp1"}}{{$txt['70925::53698_search1']}}{{/capture}}{{elseif $xml->getItem("page/@type") == (string) 'main'}}{{capture name="classAttributeTmp1" assign="classAttributeTmp1"}}{{$txt['70925::53698_main1']}}{{/capture}}{{else}}{{capture name="classAttributeTmp1" assign="classAttributeTmp1"}}{{$txt['70925::53698_all1']}}{{/capture}}{{/if}}  class="{{$classAttributeTmp1}}">
 {{include file="component_menu_additional2_69552.tpl"}}
@@ -258,7 +261,6 @@ $('#main_news1 div.date').each(function(){
 {{if  $xml->getItem("page/text/body")}}{{foreach from=$xml->getList("page/text") item=loop813}}
 <div{{assign "classAttributeTmp9" ""}}{{capture name="classAttributeTmp9" assign="classAttributeTmp9"}}n53696{{/capture}}{{capture name="classAttributeTmp9" assign="classAttributeTmp9"}}n53696 {{$txt['54655::59554_001class']}}{{/capture}}  class="{{$classAttributeTmp9}}">
 <div class="n54655_sub">{{$loop813->getItem("body")}}</div></div>{{/foreach}}{{/if}}</div></div>
-<div class="container">
 <footer class="clearfix">
 {{include file="component_menu_newsletter_70936.tpl"}}
 {{include file="component_menu_tree4_74385.tpl"}}
@@ -267,8 +269,28 @@ $('#main_news1 div.date').each(function(){
 {{include file="component_menu_tooltip_59581.tpl"}}
 {{include file="component_menu_calendar_61932.tpl"}}
 {{include file="component_menu_notice_63739.tpl"}}
-                </footer></div>
+<div class="pm_separator"></div>
+<div class="pm_footer_info">
+    <div class="left">
+        <b>Obsługa klienta: <img src="/data/include/cms/mw/pm_phone.gif"/> +48 691 543 224</b><span> (Pon-Piątek 10:00-16:00)</span>
+		
+    </div>
+    <div class="right">
+        <ul>
+            <li>
+                <img src="/data/include/cms/mw/pm_badge1.png"/>
+            </li>
+            <li>
+                <img src="/data/include/cms/mw/pm_badge2.jpg"/>
+            </li>
+            <li>
+                <img src="/data/include/cms/mw/pm_logo.png"/>
+            </li>
+        </ul>
+    </div>
 </div>
+
+                </footer></div>
 <script type="text/javascript">app_shop.runApp();</script>{{if ( $xml->getItem("action/set_render/item/@name")  == (string) 'popup') or !( $xml->getItem("action/set_render/item"))}}
 <!--IAI_TEMPLATE_additional_body_scripts-->
 {{literal}}</body></html>{{/literal}}{{/if}}

@@ -177,9 +177,12 @@
 <!--Lista produktów (search, 70924.1)-->
 {{if  $xml->getItem("/shop/page/products/display_mode[@active='normal']")}}
 <div id="search" class="row">{{foreach from=$xml->getList("/shop/page/products/product") item=loop517}}
-<div class="product_wrapper col-md-4 col-xs-6">
+<div class="product_wrapper col-md-4 col-xs-6 {{if $loop517->getItem("sizes/availability/@status") == 'disable'}}disabled {{/if}}">
 <a class="product-icon load-img" href="{{$loop517->getItemEscape("@link")}}" title="{{$loop517->getItem("name")}}" data-src="{{$loop517->getItem("icon_small")}}" data-big-src="{{$loop517->getItem("icon")}}">
 <strong class="icons">{{if  $loop517->getItem("@promo")}}
+{{if $loop517->getItem("sizes/availability/@status") == 'disable'}}
+    <span class="label disabled">Produkt niedostępny</span>
+{{/if}}{{else}}
 <span class="label promo" href="/search.php?promo=y">
                                         {{$txt['70924::53885_307pro']}}
                                     </span>{{/if}}{{if  $loop517->getItem("@new")}}
@@ -194,7 +197,9 @@
                                     </span>{{/if}}{{if  $loop517->getItem("@discount")}}
 <span class="label discount" href="/search.php?discount=y">
                                         {{$txt['70924::53885_307pr']}}                           
-                                    </span>{{/if}}</strong></a>
+                                    </span>{{/if}}
+{{/else}}
+                                    </strong></a>
 <a class="product-name" href="{{$loop517->getItemEscape("@link")}}" title="{{$loop517->getItem("name")}}">{{$loop517->getItem("name")}}</a>
 <div class="product_prices">{{if (count( $loop517->getList("sizes/size/price/@value"))  == (string) '1') or (( $loop517->getItem("sizes_version/prices/@minprice"))  == (string) ( $loop517->getItem("sizes_version/prices/@maxprice")))  or (( $loop517->getItem("sizes/prices/@minprice"))  == (string) ( $loop517->getItem("sizes/prices/@maxprice")))}}{{if ( $loop517->getItem("price/@value")  == (string) 0) and !( $loop517->getItem("price/@points"))}}
 <a class="fon_price" href="/search.php?promo=y" title="{{$txt['70924::58826_009']}}">            

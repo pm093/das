@@ -43,7 +43,71 @@
 <meta property="fb:admins" content="{{$xml->getItemEscape("/shop/page/facebook_comments/@admin_id")}}"/>
 <meta property="fb:app_id" content="{{$xml->getItemEscape("/shop/page/facebook_comments/@app_id")}}"/>{{/if}}
 <!--IAI_TEMPLATE_additional_meta_tags-->
-
+<script>
+var current_photo = '';
+var pm_counter=0;
+var container_active = false;
+var photo_active = false;
+function pm_lens(){
+    $('.zoomContainer').on('mouseover', function(){
+        if(!container_active) {
+            if($(this).css('left') != '0px'){
+                container_active = true;
+                // if($('.zoomLens').css('display')=="block"){
+                    $('.product_info').css('opacity', 0);
+                    console.log('container mouseover');
+                // }
+            }
+        }
+    })
+    $('.zoomContainer').on('mouseleave', function(){
+        if(container_active){
+            container_active = false;
+            $('.product_info').css('opacity', 1);
+            console.log('container mouseleave');
+        }
+    })
+    $('.photos > a').on('mouseover', function(){
+        current_photo = $(this);
+        console.log('photo mouseover');       
+        if(!photo_active){
+            // if($('.zoomLens').css('display')=="block"){
+                photo_active = true;
+                $('.product_info').css('opacity', 0);
+            // }
+        }
+    })
+    $('.photos > a').on('mouseleave', function(){
+        console.log('ddd')
+        setTimeout(
+            function(){
+                if($('.zoomWindowContainer > div').css('display') == 'none'){
+                    if(photo_active){
+                        photo_active = false;
+                        $('.product_info').css('opacity', 1);
+                        console.log('photo mouseleave', $('.zoomWindowContainer > div').css('display'));
+                    }
+                }
+            }, 300
+        )
+    })
+}
+function pm_wrapper() {
+    if($('.zoomContainer').length){
+        pm_lens();
+    }
+    else{
+        pm_counter++;
+        console.log('pmcounter: '+pm_counter)
+        if(pm_counter != 15){
+            setTimeout(pm_wrapper, 1000)
+        }
+    }
+}
+// $(document).ready(function(){
+//    pm_wrapper();
+// });
+</script>
 <script type="text/javascript" src="/gfx/{{$xml->getItemEscape("language/@id")}}/projector_product_questions.js.gzip?r=1551959302"></script>
 <script type="text/javascript" src="/gfx/{{$xml->getItemEscape("language/@id")}}/projector_video.js.gzip?r=1551959302"></script></head>{{capture name="meta_body_id" assign="meta_body_id"}}{{$txt['96599::10001_body_id']}}{{/capture}}{{literal}}
 <body{{/literal}}{{if $xml->getItem("action/set_render/item[@name='popup']")}}{{literal}} class="popup" {{/literal}}{{/if}}{{literal}}>{{/literal}}{{if $meta_body_id}}
@@ -375,7 +439,12 @@
                             </a>{{if  $xml->getItem("/shop/compare[@active='y']")}}
 <a class="projector_prodstock_compare" data-mobile-class="btn-small" href="settings.php?comparers=add&amp;product={{$xml->getItemEscape("page/projector/product/@id")}}" title="{{$txt['74513::54089_00_1']}}">
                                     {{$txt['74513::54089_00_2']}}
-                                </a>{{/if}}</div></div></div>{{if  $xml->getItem("page/projector/bookmarklets/item")}}
+                                </a>{{/if}}</div></div></div>
+<div class="product_section" id="pm_product_delivery_info">
+    <div><img src="/data/include/cms/mw/usp1.png" /><p>Darmowa wysyłka już od 399zł</p></div>
+    <div><img src="/data/include/cms/mw/usp2.png" /><p>Gwarancja zwrotu aż do 14 dni</p></div>
+</div>
+                                {{if  $xml->getItem("page/projector/bookmarklets/item")}}
 <div class="product_section bookmarklets_big">
 <ul>{{foreach from=$xml->getList("page/projector/bookmarklets/item") item=loop1010}}
 <li>{{$loop1010->getItem("text()")}}</li>{{/foreach}}</ul></div>{{/if}}</div>
@@ -989,6 +1058,7 @@ askforproduct.init();
 <param name="movie" value="/gfx/__IAI_TEMPLATE_LANG_639_1__/Jplayer.swf" />
 <param name="wmode" value="" />
 <img src="zaslepka.png" width="" height="" alt="Jplayer" /></object></div>
+
 <script>
 $('a.projector_video_close, div.projector_video_cover').live('click',function(){
     $('div.projector_video_cover, div.projector_video').hide();
@@ -1100,5 +1170,7 @@ Popup.cloneLayers();
 {{include file="component_menu_notice_63739.tpl"}}
                 </footer></div>
 <script type="text/javascript">app_shop.runApp();</script>{{if ( $xml->getItem("action/set_render/item/@name")  == (string) 'popup') or !( $xml->getItem("action/set_render/item"))}}
+
 <!--IAI_TEMPLATE_additional_body_scripts-->
+
 {{literal}}</body></html>{{/literal}}{{/if}}

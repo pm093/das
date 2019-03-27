@@ -56,21 +56,15 @@
 <div class="col-md-4 col-xs-12">{{if  $xml->getItem("insurances/service")}}
 <div id="menu_insurances">{{foreach from=$xml->getList("insurances/service") item=loop242}}
 <div class="menu_insurances_item">{{$loop242->getItem("sealbox_html")}}</div>{{/foreach}}</div>{{/if}}</div>{{/if}}</div>{{/if}}</div>
-<div class="menu_contact_wrapper col-md-3 col-sm-12">
-<ul id="menu_contact" class="footer_links">
-<li>
-<h2 class="contact_phone">
-<a href="contact.php" title="{{$txt['74385::35001_00']}}">
-                            {{$txt['74385::30042_094']}}
-                        </a></h2></li>{{if  $xml->getItem("/shop/contact/contact_nodes/node[@type='phone'][1]")}}
-<li class="contact_phone">
-<a href="{{$xml->getItemEscape("/shop/contact/contact_nodes/node[@type='phone'][1]/@link")}}">{{$xml->getItemEscape("/shop/contact/contact_nodes/node[@type='phone'][1]/@value")}}</a></li>{{/if}}{{if  $xml->getItem("/shop/contact/contact_nodes/node[@type='text'][1]")}}
-<li class="contact_text">
-<span>{{$xml->getItemEscape("/shop/contact/contact_nodes/node[@type='text'][1]/@value")}}</span></li>{{/if}}{{if  $xml->getItem("/shop/contact/contact_nodes/node[@type='mail'][1]")}}
-<li class="contact_title">
-<h2 class="contact_mail">
-<span>
-                                {{$txt['74385::30042_ema']}}
-                        </span></h2></li>
-<li class="contact_mail">
-<a href="{{$xml->getItemEscape("/shop/contact/contact_nodes/node[@type='mail'][1]/@link")}}">{{$xml->getItemEscape("/shop/contact/contact_nodes/node[@type='mail'][1]/@value")}}</a></li>{{/if}}</ul></div></div>
+<div class="pmsocialicons">
+    <a href="mailto:sklep.online@dastan.pl">
+        <img src="/data/include/cms/mw/pm_icon_email.png"/>
+    </a>
+    <a href="http://www.pinterest.com/DastaNClub">
+        <img src="/data/include/cms/mw/pm_icon_pinterest.png"/>
+    </a>
+    <a href="https://www.facebook.com/pages/Dastan/487068641354572">
+        <img src="/data/include/cms/mw/pm_icon_fb.png"/>
+    </a>
+</div>
+</div>
